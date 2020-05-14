@@ -89,8 +89,8 @@ insert into UnidadAprendizaje values ('C339','WEB SECURITY');
 -- ******************************************************************
 -- Insertar alumnos
 -- ******************************************************************
-insert into Alumno (noBoleta, apellidoPaterno, apellidoMaterno, CURP, nombre, email) values('2014041111','PEREZ','PEREZ','PEDRO','PEPP980613HDFLCR04','correo1@hotmail.com');
-insert into Alumno (noBoleta, apellidoPaterno, apellidoMaterno, CURP, nombre, email) values('2014081112','ANTONIO','ANTONIO','ANTONIO','AOAA980314HDFPRR03','correo2@gmail.com');
+insert into Alumno (noBoleta, apellidoPaterno, apellidoMaterno, nombre, CURP, email) values('2014041111','PEREZ','PEREZ','PEDRO','PEPP980613HDFLCR04','correo1@hotmail.com');
+insert into Alumno (noBoleta, apellidoPaterno, apellidoMaterno, nombre, CURP, email) values('2014081112','ANTONIO','ANTONIO','ANTONIO','AOAA980314HDFPRR03','correo2@gmail.com');
 -- ******************************************************************
 -- Insertar grupos
 -- ******************************************************************
