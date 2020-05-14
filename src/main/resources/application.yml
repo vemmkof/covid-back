@@ -1,0 +1,18 @@
+server:
+  port: 0
+spring:
+  application:
+    name: covid-service
+  profiles:
+    active: dev
+  security:
+    user:
+      name: covid
+      password: a9ac6b578b283a958d58ee3b93fa9c73
+    oauth:
+      clientId: vueSeguimientoCovidActividades
+      clientSecret: 3eab25643389aa032c76d744d8d571ae
+      accessTokenValiditySeconds: 9600
+      refreshTokenValiditySeconds: 9600
+      scopes: read,write
+      grantTypes: password,refresh_token
