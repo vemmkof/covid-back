@@ -104,4 +104,7 @@ insert into Grupo(secuencia, nivelSemestre, idUnidadAprendizaje, noBoleta) value
 insert into Grupo(secuencia, nivelSemestre, idUnidadAprendizaje, noBoleta) values('3CM4',3,'C352','2014081112');
 insert into Grupo(secuencia, nivelSemestre, idUnidadAprendizaje, noBoleta) values('3CM5',3,'C333','2014081112');
 insert into Grupo(secuencia, nivelSemestre, idUnidadAprendizaje, noBoleta) values('3CM5',3,'C360','2014081112');
-
+-- ******************************************************************
+-- Insertar admins
+-- ******************************************************************
+insert into Admin (noBoleta, apellidoPaterno, apellidoMaterno, nombre, CURP, email) values('2015301321','MUJICA','MARQUEZ','VICTOR EDGAR','MUMV960130HMCJRC05','vemmkof@gmail.com');

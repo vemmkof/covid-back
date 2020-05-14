@@ -1,5 +1,6 @@
 package com.ipn.escom.covid.back.config;
 
+import com.ipn.escom.covid.back.dto.UserDetailsImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,17 +17,8 @@ import java.util.Arrays;
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http//
-                .authorizeRequests()//
-                .antMatchers(HttpMethod.POST, "/oauth/**").permitAll() //
-                .anyRequest().authenticated() //
-                .and().cors().configurationSource(getConfigurationSource());
-    }
-
     @Bean
-    public CorsConfigurationSource getConfigurationSource() {
+    private static CorsConfigurationSource getConfigurationSource() {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource;
         urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
@@ -36,5 +28,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", configuration);
         return urlBasedCorsConfigurationSource;
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http//
+                .authorizeRequests()//
+                .antMatchers(HttpMethod.POST, "/oauth/**").permitAll() //
+                .antMatchers("/oauthAccessTokens/**").denyAll()
+                .antMatchers("/oauthRefreshTokens/**").denyAll()
+                .antMatchers("/admins/**").hasAuthority(UserDetailsImpl.ADMIN_ROLE)
+                .anyRequest().authenticated() //
+                .and().cors().configurationSource(getConfigurationSource());
     }
 }

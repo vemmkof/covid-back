@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 @Builder
 public class UserDetailsImpl implements UserDetails {
+    public static final String STUDENT_ROLE = "STUDENT";
+    public static final String ADMIN_ROLE = "ADMIN";
     private static final long serialVersionUID = 4610565622608764672L;
-    private static final String STUDENT_ROLE = "STUDENT";
-    private static final String ADMIN_ROLE = "ADMIN";
     private final Alumno alumno;
     private final Admin admin;
     private final boolean isAdmin;
