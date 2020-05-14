@@ -19,7 +19,7 @@ public class Grupo implements Serializable {
     private static final long serialVersionUID = -4252485677717048551L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idGrupo;
 
     @OneToOne(fetch = FetchType.EAGER)

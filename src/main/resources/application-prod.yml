@@ -3,6 +3,7 @@ spring:
     url: jdbc:mysql://localhost:3306/Encuestas?useSSL=false&serverTimezone=UTC
     username: vemm
     password: abc123??
+  #    initialization-mode: ALWAYS
   jpa:
     hibernate:
       ddl-auto: update
