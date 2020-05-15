@@ -59,7 +59,7 @@ create table Grupo(
 -- ******************************************************************
 -- Estructura de la Tabla Plataforma
 -- ******************************************************************
-drop table if exists Plataforma
+drop table if exists Plataforma;
 create table Plataforma (
   idPlataforma int not null,
   nombrePlataforma varchar(100) not null,
@@ -70,7 +70,7 @@ create table Plataforma (
 -- ******************************************************************
 -- Estructura de la Tabla MedioComunicacion
 -- ******************************************************************
-drop table if exists MedioComunicacion
+drop table if exists MedioComunicacion;
 create table MedioComunicacion (
   idMedioComunicacion int not null,
   nombreMedioComunicacion varchar(100) not null,
@@ -81,7 +81,7 @@ create table MedioComunicacion (
 -- ******************************************************************
 -- Estructura de la Tabla Porcentaje
 -- ******************************************************************
-drop table if exists Porcentaje
+drop table if exists Porcentaje;
 create table Porcentaje (
   idPorcentaje int not null,
   cantidad varchar(15) not null,
@@ -92,7 +92,7 @@ create table Porcentaje (
 -- ******************************************************************
 -- Estructura de la Tabla Grupo_has_Plataforma
 -- ******************************************************************
-drop table if exists Grupo_has_Plataforma
+drop table if exists Grupo_has_Plataforma;
 create table Grupo_has_Plataforma (
   Grupo_idGrupo int(11) not null,
   Plataforma_idPlataforma int not null,
@@ -115,7 +115,7 @@ create table Grupo_has_Plataforma (
 -- ******************************************************************
 -- Estructura de la Tabla Grupo_has_MedioComunicacion
 -- ******************************************************************
-drop table if exists Grupo_has_MedioComunicacion
+drop table if exists Grupo_has_MedioComunicacion;
 create table Grupo_has_MedioComunicacion (
   Grupo_idGrupo int(11) not null,
   MedioComunicacion_idMedioComunicacion int not null,
@@ -138,7 +138,7 @@ create table Grupo_has_MedioComunicacion (
 -- ******************************************************************
 -- Estructura de la Tabla Grupo_has_Porcentaje
 -- ******************************************************************
-drop table if exists Grupo_has_Porcentaje
+drop table if exists Grupo_has_Porcentaje;
 create table Grupo_has_Porcentaje (
   Grupo_idGrupo int(11) not null,
   Porcentaje_idPorcentaje int not null,
