@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Bean
-    private static CorsConfigurationSource getConfigurationSource() {
+    public CorsConfigurationSource getConfigurationSource() {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource;
         urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
