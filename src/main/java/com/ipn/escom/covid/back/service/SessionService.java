@@ -19,9 +19,10 @@ public class SessionService implements ISessionService {
     public boolean logout(String username) {
         Optional<OauthAccessToken> accessToken = oauthAccessTokenRepository.findByUserName(username);
         if (accessToken.isPresent()) {
-            String refreshToken = accessToken.get().getRefreshToken();
+            OauthAccessToken oauthAccessToken = accessToken.get();
+            String refreshToken = oauthAccessToken.getRefreshToken();
             oauthRefreshTokenRepository.deleteById(refreshToken);
-            oauthAccessTokenRepository.delete(accessToken.get());
+            oauthAccessTokenRepository.deleteById(oauthAccessToken.getAuthenticationId());
             return true;
         } else return false;
     }
