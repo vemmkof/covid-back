@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -16,15 +18,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "UnidadAprendizaje")
-public class UnidadAprendizaje implements Serializable {
+@Table(name = "Plataforma")
+public class Plataforma implements Serializable {
 
-    private static final long serialVersionUID = 8963811598724056489L;
+	private static final long serialVersionUID = 6564986598702072374L;
 
-    @Id
-    private String idUnidadAprendizaje;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idPlataforma;
 
     @Column(nullable = false)
-    private String nombreUnidadAprendizaje;
-    
+    private String nombrePlataforma;
 }
