@@ -3,10 +3,10 @@ spring:
     url: jdbc:mysql://localhost:3306/Encuestas?useSSL=false&serverTimezone=UTC
     username: vemm
     password: abc123??
-    initialization-mode: NEVER
+    initialization-mode: ALWAYS
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

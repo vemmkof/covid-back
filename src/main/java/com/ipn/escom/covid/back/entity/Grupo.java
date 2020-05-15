@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Builder
 @Entity
 @Table(name = "Grupo")
-
 public class Grupo implements Serializable {
     private static final long serialVersionUID = -4252485677717048551L;
 
