@@ -61,7 +61,7 @@ create table Grupo(
 -- ******************************************************************
 drop table if exists Plataforma;
 create table Plataforma (
-  idPlataforma int not null,
+  idPlataforma int not null AUTO_INCREMENT,
   nombrePlataforma varchar(100) not null,
   primary key (idPlataforma)
 );
@@ -72,7 +72,7 @@ create table Plataforma (
 -- ******************************************************************
 drop table if exists MedioComunicacion;
 create table MedioComunicacion (
-  idMedioComunicacion int not null,
+  idMedioComunicacion int not null AUTO_INCREMENT,
   nombreMedioComunicacion varchar(100) not null,
   primary key (idMedioComunicacion)
 );

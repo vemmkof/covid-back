@@ -108,3 +108,28 @@ insert into Grupo(secuencia, nivelSemestre, idUnidadAprendizaje, noBoleta) value
 -- Insertar admins
 -- ******************************************************************
 insert into Admin (noBoleta, apellidoPaterno, apellidoMaterno, nombre, CURP, email) values('2015301321','MUJICA','MARQUEZ','VICTOR EDGAR','MUMV960130HMCJRC05','vemmkof@gmail.com');
+-- ******************************************************************
+-- Insertar MedioComunicacion
+-- ******************************************************************
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (1, 'Grupo o lista de difusión de WhatsApp');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (2, 'Correo electrónico');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (3, 'Zoom');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (4, 'Microsoft Teams');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (5, 'Facebook/Messenger');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (6, 'Google Meet');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (7, 'Webex');
+INSERT INTO MedioComunicacion (idMedioComunicacion, nombreMedioComunicacion) VALUES (8, 'Ninguno');
+-- ******************************************************************
+-- Insertar Plataforma
+-- ******************************************************************
+INSERT INTO Plataforma (idPlataforma, nombrePlataforma) VALUES (1, 'Aula Virtual');
+INSERT INTO Plataforma (idPlataforma, nombrePlataforma) VALUES (2, 'Google Classroom');
+INSERT INTO Plataforma (idPlataforma, nombrePlataforma) VALUES (3, 'Edmodo');
+INSERT INTO Plataforma (idPlataforma, nombrePlataforma) VALUES (4, 'Moodle');
+INSERT INTO Plataforma (idPlataforma, nombrePlataforma) VALUES (5, 'El docente no utiliza plataformas');
+-- ******************************************************************
+-- Insertar Porcentaje
+-- ******************************************************************
+INSERT INTO Porcentaje (idPorcentaje, cantidad) VALUES (1, '81% al 100%');
+INSERT INTO Porcentaje (idPorcentaje, cantidad) VALUES (2, '61% al 80%');
+INSERT INTO Porcentaje (idPorcentaje, cantidad) VALUES (3, 'Menor al 61%');
