@@ -33,6 +33,9 @@ public class Alumno implements Serializable {
     @Column(nullable = false)
     private String nombre;
 
+    @Column(columnDefinition = "boolean DEFAULT false")
+    private boolean haveAnswer;
+
     @Column(nullable = false)
     private String CURP;
 

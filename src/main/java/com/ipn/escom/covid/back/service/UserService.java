@@ -16,28 +16,28 @@ public class UserService implements IUserService {
     private final AdminRepository adminRepository;
 
     @Override
-    public UserDto getUser(final String plate) {
-        final Alumno alumno = this.alumnoRepository.findByNoBoleta(plate).orElse(null);
-        if (alumno != null) {
-            return UserDto.builder()
-                    .fullName(this.getFullName(alumno))
-                    .email(alumno.getEmail())
-                    .plate(plate)
-                    .build();
-        }
-        final Admin admin = this.adminRepository.findByNoBoleta(plate).orElse(null);
+    public UserDto getUser(String plate) {
+        Alumno alumno = alumnoRepository.findByNoBoleta(plate).orElse(null);
+        if (alumno != null) return UserDto.builder()
+                .fullName(getFullName(alumno))
+                .email(alumno.getEmail())
+                .plate(plate)
+                .applyQuiz(!alumno.isHaveAnswer())
+                .build();
+        Admin admin = adminRepository.findByNoBoleta(plate).orElse(null);
         return UserDto.builder()
-                .fullName(this.getFullName(admin))
+                .fullName(getFullName(admin))
                 .email(admin.getEmail())
                 .plate(plate)
+                .applyQuiz(false)
                 .build();
     }
 
-    private String getFullName(final Admin admin) {
+    private String getFullName(Admin admin) {
         return String.format("%s %s %s", admin.getNombre(), admin.getApellidoPaterno(), admin.getApellidoMaterno());
     }
 
-    private String getFullName(final Alumno alumno) {
+    private String getFullName(Alumno alumno) {
         return String.format("%s %s %s", alumno.getNombre(), alumno.getApellidoPaterno(), alumno.getApellidoMaterno());
     }
 }
