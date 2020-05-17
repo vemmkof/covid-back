@@ -1,6 +1,7 @@
 package com.ipn.escom.covid.back.controller;
 
 import com.ipn.escom.covid.back.controller.api.UserApi;
+import com.ipn.escom.covid.back.dto.GroupsDto;
 import com.ipn.escom.covid.back.dto.Response;
 import com.ipn.escom.covid.back.dto.UserDto;
 import com.ipn.escom.covid.back.service.IUserService;
@@ -23,5 +24,15 @@ public class UserController implements UserApi {
                         .entity(userService.getUser(principal.getName()))
                         .message("User was found.")
                         .build());
+    }
+
+    @Override
+    public ResponseEntity<Response<GroupsDto>> getUserGroups(Principal principal) {
+        return ResponseEntity.ok(
+                Response.<GroupsDto>builder()
+                        .entity(userService.getUserGroups(principal.getName()))
+                        .message("Groups was found.")
+                        .build()
+        );
     }
 }
