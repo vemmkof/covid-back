@@ -19,7 +19,6 @@ public class QuizController implements QuizApi {
 
     @Override
     public ResponseEntity<Response<UserDto>> saveMatrix(Principal principal, MatrixRequest matrixRequest) {
-        System.out.println(matrixRequest.toString());
         return ResponseEntity.ok(quizService.saveMatrix(principal.getName(), matrixRequest));
     }
 }

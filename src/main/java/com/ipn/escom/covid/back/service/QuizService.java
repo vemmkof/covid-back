@@ -5,9 +5,13 @@ import com.ipn.escom.covid.back.dto.MatrixRequest;
 import com.ipn.escom.covid.back.dto.Response;
 import com.ipn.escom.covid.back.dto.UserDto;
 import com.ipn.escom.covid.back.entity.*;
+import com.ipn.escom.covid.back.entity.id.GrupoMedioComunicacionId;
 import com.ipn.escom.covid.back.entity.id.GrupoPlataformaId;
+import com.ipn.escom.covid.back.entity.id.GrupoPorcentajeId;
 import com.ipn.escom.covid.back.repository.*;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class QuizService implements IQuizService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuizService.class.getName());
     private final AlumnoRepository alumnoRepository;
     private final GrupoRepository grupoRepository;
     private final PlataformaRepository plataformaRepository;
@@ -28,26 +33,21 @@ public class QuizService implements IQuizService {
     @Transactional
     public Response<UserDto> saveMatrix(String plate, MatrixRequest matrixRequest) {
         Alumno alumno = alumnoRepository.findByNoBoleta(plate).orElse(null);
-        matrixRequest.getAnswers().forEach(answer -> {
-            System.out.println();
-            System.out.println(answer.toString());
-            System.out.println();
-            Grupo grupo = grupoRepository.findById(answer.getIdGrupo()).orElse(null);
-            System.out.println();
-            System.out.println(grupo.toString());
-            System.out.println();
-            saveGrupoPlataforma(answer, grupo);
-            saveGrupoMedioComunicacion(answer, grupo);
-            savePercent(answer, grupo);
-        });
-        alumno.setHaveAnswer(true);
-        alumno = alumnoRepository.save(alumno);
+        if (!alumno.isHaveAnswer()) {
+            LOGGER.info("User have no answers registered.");
+            matrixRequest.getAnswers().forEach(answer -> {
+                Grupo grupo = grupoRepository.findById(answer.getIdGrupo()).orElse(null);
+                saveGrupoPlataforma(answer, grupo);
+                saveGrupoMedioComunicacion(answer, grupo);
+                savePercent(answer, grupo);
+            });
+            alumno.setHaveAnswer(true);
+            alumno = alumnoRepository.save(alumno);
+        }
         return Response.<UserDto>builder()
                 .entity(UserDto.builder()
-                        .plate(plate)
-                        .email(alumno.getEmail())
-                        .fullName(getFullName(alumno))
-                        .applyQuiz(!alumno.isHaveAnswer())
+                        .plate(plate).email(alumno.getEmail())
+                        .fullName(getFullName(alumno)).applyQuiz(!alumno.isHaveAnswer())
                         .build())
                 .message("Successful quiz answered.")
                 .build();
@@ -59,6 +59,10 @@ public class QuizService implements IQuizService {
         GrupoPorcentaje grupoPorcentaje = GrupoPorcentaje.builder()
                 .porcentaje(porcentaje)
                 .grupo(grupo)
+                .grupoPorcentajeId(GrupoPorcentajeId.builder()
+                        .idPorcentaje(porcentaje.getIdPorcentaje())
+                        .idGrupo(grupo.getIdGrupo())
+                        .build())
                 .build();
         grupoPorcentajeRepository.save(grupoPorcentaje);
     }
@@ -70,6 +74,10 @@ public class QuizService implements IQuizService {
             GrupoMedioComunicacion grupoMedioComunicacion = GrupoMedioComunicacion.builder()
                     .medioComunicacion(medioComunicacion)
                     .grupo(grupo)
+                    .grupoMedioComunicacionId(GrupoMedioComunicacionId.builder()
+                            .idMedioComunicacion(medioComunicacion.getIdMedioComunicacion())
+                            .idGrupo(grupo.getIdGrupo())
+                            .build())
                     .build();
             grupoMedioComunicacionRepository.save(grupoMedioComunicacion);
         });
@@ -78,9 +86,6 @@ public class QuizService implements IQuizService {
     @Transactional
     private void saveGrupoPlataforma(Answer answer, Grupo grupo) {
         Plataforma plataforma = plataformaRepository.findById(answer.getIdPlataforma()).orElse(null);
-        System.out.println();
-        System.out.println(plataforma);
-        System.out.println();
         GrupoPlataforma grupoPlataforma = GrupoPlataforma.builder()
                 .plataforma(plataforma)
                 .grupo(grupo)
@@ -89,9 +94,7 @@ public class QuizService implements IQuizService {
                         .idPlataforma(plataforma.getIdPlataforma())
                         .build())
                 .build();
-        System.out.println(grupoPlataforma);
         grupoPlataformaRepository.save(grupoPlataforma);
-        System.out.println("SI LO GUARDO XD");
     }
 
     private String getFullName(Alumno alumno) {
