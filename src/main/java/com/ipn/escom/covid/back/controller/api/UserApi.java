@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 
 public interface UserApi {
+
     @GetMapping("/user")
     ResponseEntity<Response<UserDto>> getUser(@Validated Principal principal);
-
 
     @GetMapping("/user/group")
     ResponseEntity<Response<GroupsDto>> getUserGroups(@Validated Principal principal);
