@@ -1,5 +1,6 @@
 package com.ipn.escom.covid.back.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +26,8 @@ public class Grupo implements Serializable {
     @JoinColumn(name = "idUnidadAprendizaje", nullable = false)
     private UnidadAprendizaje unidadAprendizaje;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "noBoleta", nullable = false)
     private Alumno alumno;
 
