@@ -38,6 +38,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/oauthAccessTokens/**").denyAll()
                 .antMatchers("/oauthRefreshTokens/**").denyAll()
                 .antMatchers("/admins/**").hasAuthority(UserDetailsImpl.ADMIN_ROLE)
+                .antMatchers("/statistics/**").hasAuthority(UserDetailsImpl.ADMIN_ROLE)
                 .anyRequest().authenticated() //
                 .and().cors().configurationSource(getConfigurationSource());
     }
