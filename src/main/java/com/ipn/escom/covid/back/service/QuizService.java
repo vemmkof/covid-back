@@ -5,7 +5,8 @@ import com.ipn.escom.covid.back.dto.Response;
 import com.ipn.escom.covid.back.dto.UserDto;
 import com.ipn.escom.covid.back.entity.Alumno;
 import com.ipn.escom.covid.back.entity.Grupo;
-import com.ipn.escom.covid.back.repository.*;
+import com.ipn.escom.covid.back.repository.AlumnoRepository;
+import com.ipn.escom.covid.back.repository.GrupoRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,6 @@ public class QuizService implements IQuizService {
     private static final Logger LOGGER = LoggerFactory.getLogger(QuizService.class.getName());
     private final AlumnoRepository alumnoRepository;
     private final GrupoRepository grupoRepository;
-    private final PlataformaRepository plataformaRepository;
-    private final MedioComunicacionRepository medioComunicacionRepository;
-    private final PorcentajeRepository porcentajeRepository;
 
     @Override
     @Transactional
@@ -34,6 +32,7 @@ public class QuizService implements IQuizService {
             });
             alumno.setHaveAnswer(true);
             alumno = alumnoRepository.save(alumno);
+
         }
         return Response.<UserDto>builder()
                 .entity(UserDto.builder()

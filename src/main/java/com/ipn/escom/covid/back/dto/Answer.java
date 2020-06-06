@@ -17,7 +17,4 @@ public class Answer implements Serializable {
     private Integer idGrupo;
     private boolean baja;
     private String motivo;
-//    private Integer idPlataforma;
-//    private List<Integer> idsMedioComunicacion;
-//    private Integer idPorcentaje;
 }
