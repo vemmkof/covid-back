@@ -13,4 +13,5 @@ public class UserDto implements Serializable {
     private String fullName;
     private String email;
     private boolean applyQuiz;
+    private String filePath;
 }

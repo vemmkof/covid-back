@@ -39,6 +39,9 @@ public class Alumno implements Serializable {
     @Column(nullable = false)
     private String CURP;
 
+    @Column(nullable = true)
+    private String filePath;
+
     @Column(nullable = false, columnDefinition = "varchar(100) default 'sinemail@sinemail.com'")
     private String email;
 

@@ -19,17 +19,20 @@ public class UserService implements IUserService {
     private final GrupoRepository grupoRepository;
 
     @Override
-    public UserDto getUser(String plate) {
-        Alumno alumno = alumnoRepository.findByNoBoleta(plate).orElse(null);
-        if (alumno != null) return UserDto.builder()
-                .fullName(getFullName(alumno))
-                .email(alumno.getEmail())
-                .plate(plate)
-                .applyQuiz(!alumno.isHaveAnswer())
-                .build();
-        Admin admin = adminRepository.findByNoBoleta(plate).orElse(null);
+    public UserDto getUser(final String plate) {
+        final Alumno alumno = this.alumnoRepository.findByNoBoleta(plate).orElse(null);
+        if (alumno != null) {
+            return UserDto.builder()
+                    .fullName(this.getFullName(alumno))
+                    .email(alumno.getEmail())
+                    .plate(plate)
+                    .applyQuiz(!alumno.isHaveAnswer())
+                    .filePath(alumno.getFilePath())
+                    .build();
+        }
+        final Admin admin = this.adminRepository.findByNoBoleta(plate).orElse(null);
         return UserDto.builder()
-                .fullName(getFullName(admin))
+                .fullName(this.getFullName(admin))
                 .email(admin.getEmail())
                 .plate(plate)
                 .applyQuiz(false)
@@ -37,17 +40,17 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public GroupsDto getUserGroups(String plate) {
-        Alumno alumno = alumnoRepository.findByNoBoleta(plate).orElse(null);
-        if (alumno == null || alumno.isHaveAnswer()) return null;
-        return GroupsDto.builder().groups(grupoRepository.findAllByAlumno(alumno)).build();
+    public GroupsDto getUserGroups(final String plate) {
+        final Alumno alumno = this.alumnoRepository.findByNoBoleta(plate).orElse(null);
+//        if (alumno == null || alumno.isHaveAnswer()) return null;
+        return GroupsDto.builder().groups(this.grupoRepository.findAllByAlumno(alumno)).build();
     }
 
-    private String getFullName(Admin admin) {
+    private String getFullName(final Admin admin) {
         return String.format("%s %s %s", admin.getNombre(), admin.getApellidoPaterno(), admin.getApellidoMaterno());
     }
 
-    private String getFullName(Alumno alumno) {
+    private String getFullName(final Alumno alumno) {
         return String.format("%s %s %s", alumno.getNombre(), alumno.getApellidoPaterno(), alumno.getApellidoMaterno());
     }
 }

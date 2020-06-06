@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -15,7 +15,9 @@ import java.util.List;
 public class Answer implements Serializable {
     private static final long serialVersionUID = 4288434983783683076L;
     private Integer idGrupo;
-    private Integer idPlataforma;
-    private List<Integer> idsMedioComunicacion;
-    private Integer idPorcentaje;
+    private boolean baja;
+    private String motivo;
+//    private Integer idPlataforma;
+//    private List<Integer> idsMedioComunicacion;
+//    private Integer idPorcentaje;
 }
