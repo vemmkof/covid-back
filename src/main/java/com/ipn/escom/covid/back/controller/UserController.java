@@ -1,6 +1,8 @@
 package com.ipn.escom.covid.back.controller;
 
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipn.escom.covid.back.controller.api.UserApi;
+import com.ipn.escom.covid.back.dto.BajaDto;
 import com.ipn.escom.covid.back.dto.GroupsDto;
 import com.ipn.escom.covid.back.dto.ReportDto;
 import com.ipn.escom.covid.back.dto.Response;
@@ -21,6 +24,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
@@ -47,14 +51,14 @@ public class UserController implements UserApi {
 	}
 
 	private void method() {
-//		InputStream employeeReportStream = (InputStream) getClass().getResourceAsStream("/jasper/Comprobante.jrxml");
 		try {
-//			JasperDesign jasperDesign = JRXmlLoader.load("jasper/Comprobante.jrxml");
 			JasperReport jasperReport = JasperCompileManager
 					.compileReport(this.getClass().getResourceAsStream("/jasper/Comprobante.jrxml"));
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("report",
 					ReportDto.builder().fullName("fullName123").noBoleta("noBoleta456").email("email789").build());
+			JRBeanCollectionDataSource collectionDataSource = new JRBeanCollectionDataSource(getMaterias());
+			parameters.put("bajas", collectionDataSource);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
 			JRPdfExporter exporter = new JRPdfExporter();
 			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
@@ -62,18 +66,21 @@ public class UserController implements UserApi {
 			SimplePdfReportConfiguration reportConfig = new SimplePdfReportConfiguration();
 			reportConfig.setSizePageToContent(true);
 			reportConfig.setForceLineBreakPolicy(false);
-
 			SimplePdfExporterConfiguration exportConfig = new SimplePdfExporterConfiguration();
 			exportConfig.setMetadataAuthor("vemm");
 			exportConfig.setEncrypted(true);
 			exportConfig.setAllowedPermissionsHint("PRINTING");
-
 			exporter.setConfiguration(reportConfig);
 			exporter.setConfiguration(exportConfig);
-
 			exporter.exportReport();
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Collection<?> getMaterias() {
+		return Arrays.asList(BajaDto.builder().materia("m1").grupo("g1").motivo("m1").build(),
+				BajaDto.builder().materia("m2").grupo("g2").motivo("m2").build(),
+				BajaDto.builder().materia("m3").grupo("g3").motivo("m3").build());
 	}
 }

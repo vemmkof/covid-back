@@ -1,7 +1,6 @@
 package com.ipn.escom.covid.back.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +16,5 @@ public class ReportDto implements Serializable {
 	private String fullName;
 	private String noBoleta;
 	private String email;
-	private List<BajaDto> bajaDtos;
+//	private List<BajaDto> bajaDtos;
 }
