@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Comprobante" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ed522ad-f874-4382-a949-19b7c645104f">
+	<parameter name="report" class="com.ipn.escom.covid.back.dto.ReportDto"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="42" uuid="ae358105-bc6b-4e09-8f6d-5ecae65cab11"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ciudad de México, " + (new java.text.SimpleDateFormat("MMMMM dd  yyyy",new Locale("es", "ES"))).format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="70" uuid="aa141732-d638-47a9-9d71-d6eb39f6d63e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["M. EN C. JOSÉ ASUNCIÓN ENRÍQUEZ ZÁRATE\nSUBDIRECTOR DE SERVICIOS EDUCATIVOS E\nINTEGRACIÓN SOCIAL\nP R E S E N T E"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="30" uuid="2dbd5e9f-63c3-4d46-9f71-25d662c39f26"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Por este medio le solicito atentamente su autorización para dar de baja la unidad de aprendizaje: "]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="370"/>
+	</detail>
+	<pageFooter>
+		<band height="142">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="142" uuid="45c8ccc5-384f-45e1-9dc6-e923dbcfbb1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["A T E N T A M E N T E\n(FIRMA)\n\n__________________________\n\n" + $P{report}.getFullName() + "\n\n" + $P{report}.getNoBoleta() + "\n\n" + $P{report}.getEmail()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
