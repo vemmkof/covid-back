@@ -6,7 +6,7 @@ spring:
   application:
     name: covid-service
   profiles:
-    active: prod
+    active: dev
   security:
     user:
       name: covid
