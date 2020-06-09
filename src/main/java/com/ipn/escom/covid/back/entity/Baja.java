@@ -25,12 +25,12 @@ public class Baja implements Serializable {
     @EmbeddedId
     private BajaId bajaId;
 
-    @OneToOne
+    @ManyToOne
     @MapsId("idGrupo")
     @JoinColumn(name = "idGrupo")
     private Grupo grupo;
 
-    @OneToOne
+    @ManyToOne
     @MapsId("noBoleta")
     @JoinColumn(name = "noBoleta")
     private Alumno alumno;

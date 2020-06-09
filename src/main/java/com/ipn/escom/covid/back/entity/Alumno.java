@@ -40,7 +40,7 @@ public class Alumno implements Serializable {
     private String CURP;
 
     @Column(nullable = true)
-    private String filePath;
+    private String fileName;
 
     @Column(nullable = false, columnDefinition = "varchar(100) default 'sinemail@sinemail.com'")
     private String email;

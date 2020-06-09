@@ -1,10 +1,12 @@
 server:
   port: 8081
+  report:
+    path: '/home/vemmkof/test'
 spring:
   application:
     name: covid-service
   profiles:
-    active: dev
+    active: prod
   security:
     user:
       name: covid
